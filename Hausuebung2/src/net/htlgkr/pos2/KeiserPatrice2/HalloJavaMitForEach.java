@@ -5,14 +5,16 @@ import java.util.List;
 
 public class HalloJavaMitForEach {
 
-    private void forEach() {
+    public void forEach() {
         List<String> strings = new ArrayList<>();
         strings.add("Hallo");
         strings.add("Welt");
-
-        for (String s:strings) {
+        System.out.println("Normal:");
+        for (String s : strings) {
             System.out.println(s);
         }
+        System.out.println("\nlLamda:");
+        strings.forEach((n) -> System.out.println(n));
     }
 
 }
