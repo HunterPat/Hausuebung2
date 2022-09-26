@@ -31,11 +31,14 @@ public class NumberTester {
     }
 
     public void testFile() {
+        String line;
         try {
             Scanner scanner = new Scanner(new File(fileName));
-            if(scanner.hasNextLine() != false)
+            while (scanner.hasNextLine())
             {
-
+               line = scanner.nextLine();
+               String[] strings = line.split(" ");
+               if()
             }
         } catch (FileNotFoundException e) {
             e.printStackTrace();
