@@ -1,10 +1,12 @@
-package net.htlgkr.pos2.KeiserPatrice2;
+package net.htlgkr.pos2.KeiserPatrice2.Number3;
+
+import net.htlgkr.pos2.KeiserPatrice2.Number3.NumberTest;
 
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
 
-public class NumberTester implements NumberTest{
+public class NumberTester implements NumberTest {
     private String fileName;
     private NumberTest oddTester;
     private NumberTest primeTester;
@@ -38,7 +40,7 @@ public class NumberTester implements NumberTest{
                 if (strings.length == 1) {
 
                 } else {
-                    testNumber(Integer.parseInt(strings[0] + strings[1]));
+                   boolean erg = testNumber(Integer.parseInt(strings[0] + strings[1]));
                 }
             }
         } catch (FileNotFoundException e) {
@@ -47,50 +49,59 @@ public class NumberTester implements NumberTest{
     }
 
     @Override
-    public boolean testNumber(int number) {
+    public boolean testNumber(int number) { //sehr dumme methode(Ich verstehe nicht weswegen er boolean ausgiebt und nicht einfach(NOPRIME) oder (PRIME) meiner Meinung kein Sinn dahinter
+        final boolean[] erg = {false};
         char[] numberChars = Integer.toString(number).toCharArray();
+        if (numberChars[0] == '3') {
+            setPalindromeTester((palT) -> { // ICH VERSTEHE DIESEN PARAMETER NICHT
+                char[] chars = Integer.toString(palT).toCharArray();
+                int counter = 0;
 
-        if (numberChars[0] == 3) {
-                setPalindromeTester((palT) -> {
-                    char[] chars = Integer.toString(palT).toCharArray();
-                    int counter = 0;
-                    for (int i = 0; i < chars.length; i++) {
+                for (int i = 0; i < chars.length; i++) {
 
-                        if (chars[i] == chars[chars.length - (i + 1)]) {
-                            counter++;
-                        }
+                    if (chars[i] == chars[chars.length - (i + 1)]) {
+                        counter++;
                     }
-                    if (counter == chars.length) {
-                        System.out.println("PALINDROME");
-                        return true;
-                    } else {
-                        System.out.println("NO PALINDROME");
-                        return false;
-                    }
-                });
+                }
+                if (counter == chars.length) {
+                    System.out.println("PALINDROME");
+                    erg[0] = true;
+                    return true;
+                } else {
+                    System.out.println("NO PALINDROME");
+                    erg[0] = false;
+                    return false;
+                }
+            });
 
-        } else if (numberChars[0] == 2) {
-            setPrimeTester((primeT) -> {
+        } else if (numberChars[0] == '2') {
+            setPrimeTester((primeT) -> { // ICH VERSTEHE DIESEN PARAMETER NICHT
                 if ((primeT / 2) == 0 && (primeT / 3) == 0) {
                     System.out.println("PRIME");
+                    erg[0] = true;
                     return true;
                 } else {
                     System.out.println("NO PRIME");
+                    erg[0] = false;
                     return false;
                 }
 
             });
             System.out.println("PRIME");
-        } else if (numberChars[0] == 1) {
-            setOddEvenTester((oddT) -> {
+        } else if (numberChars[0] == '1') {
+            setOddEvenTester((oddT) -> { // ICH VERSTEHE DIESEN PARAMETER NICHT
+
                 if (oddT % 2 == 0) {
                     System.out.println("EVEN");
+                    erg[0] = true;
                     return true;
                 } else {
                     System.out.println("ODD");
+                    erg[0] = false;
                     return false;
                 }
             });
         }
+        return erg[0];
     }
 }

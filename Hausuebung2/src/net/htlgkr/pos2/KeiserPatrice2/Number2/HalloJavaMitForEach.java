@@ -1,4 +1,4 @@
-package net.htlgkr.pos2.KeiserPatrice2;
+package net.htlgkr.pos2.KeiserPatrice2.Number2;
 
 import java.util.ArrayList;
 import java.util.List;
